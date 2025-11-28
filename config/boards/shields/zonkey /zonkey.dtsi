@@ -1,4 +1,8 @@
-    #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+#include "zonkey-layouts.dtsi"
+
 
 / {
     chosen {
@@ -30,21 +34,70 @@
                 ;
     };
 
-    left_encoder: encoder_left {
+    l// Encoders
+    left_encoder: left_encoder {
         compatible = "alps,ec11";
-        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <24>;
         status = "disabled";
     };
-
-    right_encoder: encoder_right {
+    right_encoder: right_encoder {
+        compatible = "alps,ec11";
         status = "disabled";
     };
-
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
+    };
+
+ // Input Listners
+    split_inputs_R {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        glidepoint_split_R: glidepoint_split_R@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+    split_inputs_L {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        glidepoint_split_L: glidepoint_split_L@1 {
+            compatible = "zmk,input-split";
+            reg = <1>;
+        };
+    };
+
+    glidepoint_listener_R: glidepoint_listener_R {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&glidepoint_split_R>;
+    };
+    glidepoint_listener_L: glidepoint_listener_L {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&glidepoint_split_L>;
+    };
+};
+
+// SPI
+&qspi {
+	status = "disabled";
+};
+&xiao_spi {
+    status = "okay";
+    cs-gpios = <&gpio0 9 (GPIO_ACTIVE_LOW )>;
+
+    glidepoint: glidepoint@0 {
+        compatible = "cirque,pinnacle";
+        status = "okay";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        dr-gpios = <&gpio1 10 (GPIO_ACTIVE_LOW )>;
+
+        sensitivity = "2x";
+        no-taps;
+        no-smoothing;
     };
 };
