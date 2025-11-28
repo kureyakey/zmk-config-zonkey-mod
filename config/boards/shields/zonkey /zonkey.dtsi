@@ -17,7 +17,46 @@
             RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)     RC(3,8) RC(3,9)                         RC(3,10)         
         >;
     };
-    
+
+//trackpad settings  
+    split_inputs {
+      #address-cells = <1>;
+      #size-cells = <0>;
+
+      glidepoint_split_L: glidepoint_split_L@0 {
+        compatible = "zmk,input-split";
+        reg = <0>;
+      };
+    };
+
+    glidepoint_listener_L: glidepoint_listener_L {
+      compatible = "zmk,input-listener";
+      status = "disabled";
+      device = <&glidepoint_split_L>;
+
+        input-processors = <&zip_xy_to_scroll_mapper>,
+                           <&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+                           <&zip_xy_scaler 1 16>,
+                           <&zip_scroll_scaler 1 5>;
+    };
+
+    glidepoint_listener_R: glidepoint_listener_R {
+      compatible = "zmk,input-listener";
+      status = "disabled";
+
+        input-processors = //<&zip_xy_scaler 3 2>, 
+                             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>;
+                             
+      scroller {
+        layers = <1>;
+        input-processors =
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_xy_scaler 1 16>,
+            <&zip_scroll_scaler 1 5>;
+    };
+};
+
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
@@ -30,10 +69,18 @@
                 ;
     };
 
-    left_encoder: encoder_left {
+    left_encoder_a: encoder_a_left {
         compatible = "alps,ec11";
-        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        a-gpios = <&gpio0 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <24>;
+        status = "disabled";
+    };
+    
+    left_encoder_b: encoder_b_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <24>;
         status = "disabled";
     };
@@ -44,7 +91,7 @@
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder &right_encoder>;
+        sensors = <&left_encoder_a &left_encoder_b &right_encoder>;
         triggers-per-rotation = <10>;
     };
 };
