@@ -33,7 +33,7 @@
                 ;
     };
 
-    l// Encoders
+    // Encoders
     left_encoder: left_encoder {
         compatible = "alps,ec11";
         status = "disabled";
