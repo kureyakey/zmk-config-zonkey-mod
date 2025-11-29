@@ -1,6 +1,6 @@
 manifest:
   remotes:
-    - name: zmkfirmware 
+    - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
     - name: MeowCatpawkittie
       url-base: https://github.com/MeowCatpawkittie
@@ -10,7 +10,8 @@ manifest:
       url-base: https://github.com/petejohanson
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
-　projects:
+
+  projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
@@ -26,5 +27,7 @@ manifest:
       revision: main
     - name: zmk-nice-oled
       remote: mctechnology17
-      revision: main  self:
+      revision: main
+
+  self:
     path: config
