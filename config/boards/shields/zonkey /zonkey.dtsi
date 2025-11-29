@@ -7,7 +7,9 @@
 
 / {
     chosen {
+        zmk,kscan = &kscan0;
         zmk,physical-layout = &default_layout;
+        zephyr,display = &oled;
     };
 
     // Trackpad settings
