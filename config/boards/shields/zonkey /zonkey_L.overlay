@@ -11,25 +11,3 @@
             , <&gpio0 19 (GPIO_ACTIVE_HIGH)>
             ;
 };
-
-left_encoder_bottom: left_encoder_bottom {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio0  2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0  5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        steps = <12>;
-        status = "okay";
-    };
-
-    left_encoder_side: left_encoder_side {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio1 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        steps = <24>;
-        status = "okay";
-    };
-
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder_bottom &left_encoder_side>;
-        triggers-per-rotation = <10>;
-    };
