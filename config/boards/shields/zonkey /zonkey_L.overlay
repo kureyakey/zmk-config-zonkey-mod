@@ -11,3 +11,19 @@
             , <&gpio0 19 (GPIO_ACTIVE_HIGH)>
             ;
 };
+
+&left_encoder {
+    a-gpios = <&gpio0  5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    b-gpios = <&gpio0  2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    steps = <24>;
+    status = "okay";
+};
+
+&glidepoint_split_L {
+    status = "okay";
+    device = <&glidepoint>;
+};
+&glidepoint_split_R {
+    status = "disabled";
+    device = <&glidepoint>;
+};
