@@ -95,20 +95,20 @@
 
 
 //trackpad settings  
-    split_inputs {
-      #address-cells = <1>;
-      #size-cells = <0>;
+    split_inputs_R {
+        #address-cells = <1>;
+        #size-cells = <0>;
 
-      glidepoint_split_L: glidepoint_split_L@0 {
-        compatible = "zmk,input-split";
-        reg = <0>;
-      };
+        glidepoint_split_R: glidepoint_split_R@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
     };
 
-    glidepoint_listener_L: glidepoint_listener_L {
+    glidepoint_listener_R: glidepoint_listener_R {
       compatible = "zmk,input-listener";
       status = "disabled";
-      device = <&glidepoint_split_L>;
+      device = <&glidepoint_splitR>;
 
         input-processors = <&zip_xy_to_scroll_mapper>,
                            <&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
@@ -116,13 +116,6 @@
                            <&zip_scroll_scaler 1 5>;
     };
 
-    glidepoint_listener_R: glidepoint_listener_R {
-      compatible = "zmk,input-listener";
-      status = "disabled";
-
-        input-processors = //<&zip_xy_scaler 3 2>, 
-                             <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>;
-                             
       scroller {
         layers = <1>;
         input-processors =
@@ -132,7 +125,6 @@
             <&zip_scroll_scaler 1 5>;
     };
 };
-
 
     left_encoder: encoder_left {
         compatible = "alps,ec11";
