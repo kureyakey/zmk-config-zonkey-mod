@@ -94,15 +94,15 @@
     };
 
 
-// Input Listners
-    split_inputs_R {
-        #address-cells = <1>;
-        #size-cells = <0>;
+//trackpad settings  
+    split_inputs {
+      #address-cells = <1>;
+      #size-cells = <0>;
 
-        glidepoint_split_R: glidepoint_split_R@0 {
-            compatible = "zmk,input-split";
-            reg = <0>;
-        };
+      glidepoint_split_L: glidepoint_split_L@0 {
+        compatible = "zmk,input-split";
+        reg = <0>;
+      };
     };
 
     glidepoint_listener_L: glidepoint_listener_L {
