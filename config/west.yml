@@ -1,6 +1,6 @@
 manifest:
   remotes:
-    - name: zmkfirmware
+    - name: zmkfirmware 
       url-base: https://github.com/zmkfirmware
     - name: MeowCatpawkittie
       url-base: https://github.com/MeowCatpawkittie
@@ -8,7 +8,6 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: petejohanson
       url-base: https://github.com/petejohanson
-
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -20,6 +19,5 @@ manifest:
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
-      
   self:
     path: config
