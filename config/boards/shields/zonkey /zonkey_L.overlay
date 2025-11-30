@@ -60,3 +60,11 @@
 &glidepoint_split_L {
     device = <&glidepoint_L>;
 }; 
+
+&left_encoder_a {
+    status = "okay";
+};
+
+&left_encoder_b {
+    status = "okay";
+};
