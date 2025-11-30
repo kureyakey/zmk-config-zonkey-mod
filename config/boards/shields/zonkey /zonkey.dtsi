@@ -140,8 +140,13 @@
         steps = <20>;
         status = "disabled";
     };
-    
-    sensors: sensors {
+
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        status = "disabled";
+    };
+
+        sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder_a &left_encoder_b &right_encoder_a>;
         triggers-per-rotation = <5>;
