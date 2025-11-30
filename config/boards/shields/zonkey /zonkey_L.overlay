@@ -56,3 +56,17 @@
 
     };
 };
+
+left_encoder_a: encoder_a_left {
+    a-gpios = <&gpio1  0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    b-gpios = <&gpio0 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    steps = <24>;
+    status = "okay";
+};
+
+left_encoder_b: encoder_b_left {
+    a-gpios = <&gpio1  0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    b-gpios = <&gpio0 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    steps = <24>;
+    status = "okay";
+};
