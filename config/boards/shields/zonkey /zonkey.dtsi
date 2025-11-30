@@ -142,9 +142,9 @@
     };
 
     right_encoder: encoder_right {
-        compatible = "alps,ec11";
         status = "disabled";
     };
+
 
         sensors: sensors {
         compatible = "zmk,keymap-sensors";
