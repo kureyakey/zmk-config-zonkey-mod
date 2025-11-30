@@ -77,7 +77,7 @@
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
-     keys  // 
+    keys = <
             &key_physical_attrs 100 100   25    0       0     0     0
             &key_physical_attrs 100 100  125    0       0     0     0
             &key_physical_attrs 100 100  225    0       0     0     0
