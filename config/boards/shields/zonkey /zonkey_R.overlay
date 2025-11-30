@@ -65,7 +65,3 @@
     status = "okay";
     device = <&glidepoint_R>;
 };
-
-&right_encoder_a {
-    status = "okay";
-};
