@@ -7,9 +7,7 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
         zmk,physical-layout = &default_layout;
-        zephyr,display = &oled;
     };
 
     // Trackpad settings
@@ -127,20 +125,22 @@
         >;
     };
 
-    left_encoder_a: encoder_a_left {
+    left_encoder: encoder_left {
         compatible = "alps,ec11";
+        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <24>;
         status = "disabled";
     };
-    
-    left_encoder_b: encoder_b_left {
+
+    right_encoder: encoder_right {
         compatible = "alps,ec11";
         status = "disabled";
     };
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder_a &left_encoder_b>;
-        triggers-per-rotation = <5>;
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <10>;
     };
 };
-
