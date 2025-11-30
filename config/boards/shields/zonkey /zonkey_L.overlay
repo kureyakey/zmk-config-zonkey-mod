@@ -58,10 +58,18 @@
 };
 
 &glidepoint_split_L {
-    device = <&glidepoint_L>;
+    compatible = "zmk,encoder";
+    a-gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
+    b-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+    steps = <24>;
+    status = "okay";
 }; 
 
 &left_encoder_a {
+    compatible = "zmk,encoder";
+    a-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+    b-gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
+    steps = <24>;
     status = "okay";
 };
 
