@@ -8,7 +8,7 @@
         zmk,physical-layout = &default_layout;
         zephyr,display = &oled;
     };
-
+};  
 
 &kscan0 {
         col-gpios
