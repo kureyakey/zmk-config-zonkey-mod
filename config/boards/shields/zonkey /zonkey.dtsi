@@ -59,7 +59,7 @@ i2c1_default: i2c1_default {
             low-power-enable;
         };
     };
-};
+
 &i2c1 {
     status = "okay";
     compatible = "nordic,nrf-twi";
@@ -81,6 +81,8 @@ i2c1_default: i2c1_default {
         inversion-on;
         prechargep = <0x22>;
     };
+};
+
 };
 
 &xiao_serial { status = "disabled"; };
