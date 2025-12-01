@@ -7,9 +7,8 @@
 
 / {
     chosen {
-        zmk,physical-layout = &tomkey_physical_layout;
+        zmk,physical-layout = &default_layout;
     };
-
 
     // Trackpad settings
     split_inputs {
@@ -43,8 +42,9 @@
                                <&zip_xy_scaler 1 16>,
                                <&zip_scroll_scaler 1 5>;
         };
+    };
 
-kscan0: kscan {
+    kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
@@ -69,6 +69,7 @@ kscan0: kscan {
     default_layout: default_layout {
         compatible = "zmk,physical-layout";
         display-name = "Default";
+
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
@@ -124,19 +125,11 @@ kscan0: kscan {
         >;
     };
 
-    left_encoder_a: encoder_a_left {
+    left_encoder: encoder_left {
         compatible = "alps,ec11";
-        a-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <20>;
-        status = "disabled";
-    };
-    
-    left_encoder_b: encoder_b_left {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <20>;
+        a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <24>;
         status = "disabled";
     };
 
@@ -147,7 +140,7 @@ kscan0: kscan {
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder_a &left_encoder_b &right_encoder>;
+        sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
     };
 };
