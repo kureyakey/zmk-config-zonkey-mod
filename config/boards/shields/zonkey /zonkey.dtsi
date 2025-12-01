@@ -8,7 +8,8 @@
 / {
     chosen {
         zmk,physical-layout = &default_layout;
-    };
+        zephyr,display = &oled;
+       };
 
     // Trackpad settings
     split_inputs {
@@ -69,7 +70,6 @@
     default_layout: default_layout {
         compatible = "zmk,physical-layout";
         display-name = "Default";
-
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
